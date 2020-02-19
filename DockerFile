@@ -1,0 +1,6 @@
+FROM gcc:9.2.0
+RUN apt update
+RUN apt install cmake swig unzip -y
+RUN wget https://github.com/ninja-build/ninja/releases/download/v1.10.0/ninja-linux.zip
+RUN unzip ninja-linux.zip
+RUN cp ninja /usr/local/bin
