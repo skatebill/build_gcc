@@ -1,6 +1,14 @@
 FROM gcc:9.2.0
 RUN apt update
-RUN apt install cmake swig unzip python3-dev -y
+RUN apt install cmake swig unzip -y
 RUN wget https://github.com/ninja-build/ninja/releases/download/v1.10.0/ninja-linux.zip
 RUN unzip ninja-linux.zip
 RUN cp ninja /usr/local/bin
+RUN wget https://www.python.org/ftp/python/3.6.9/Python-3.6.9.tgz
+RUN tar xf Python-3.6.9.tgz
+WORKDIR  Python-3.6.9
+RUN ./configure --enable-optimizations --enable-shared
+RUN make -j8
+RUN make install
+RUN echo export LD_LIBRARY_PATH=/usr/local/lib/ >> ~/.bashrc
+
